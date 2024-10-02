@@ -1,0 +1,13 @@
+.volumeControl {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    color: #ffff;
+    font-weight: 900;
+}
+  
+.volumeControl input[type="range"] {
+    width: 100%;
+}
+  

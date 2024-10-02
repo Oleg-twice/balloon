@@ -1,0 +1,27 @@
+.toggle-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #4caf50;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.toggle-button:hover {
+    background-color: #45a049;
+}
+
+.toggle-button:active {
+    transform: scale(0.95);
+}
+
+.playing {
+    background-color: #f44336;
+}
+
+.icon {
+    margin-right: 8px;
+}

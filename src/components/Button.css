@@ -1,0 +1,28 @@
+.button {
+    height: 50px;
+    width: 269px;
+    background: hsl(340deg 100% 32%);
+    border: none;
+    border-radius: 12px;
+    padding: 0;
+    cursor: pointer;
+    outline-offset: 4px;
+}
+
+.text-holder {
+    display: block;
+    padding: 12px 42px;
+    border-radius: 12px;
+    font-size: 1.25rem;
+    background: hsl(345deg 100% 47%);
+    color: white;
+    transform: translateY(-6px);
+}
+
+button:active .text-holder {
+    transform: translateY(-2px);
+}
+
+.button:focus:not(:focus-visible) {
+    outline: none;
+}
