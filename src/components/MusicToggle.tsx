@@ -2,6 +2,13 @@ import React, { useState, useEffect, useRef, memo } from 'react';
 import VolumeControl from './VolumeControl';
 import './MusicToggle.css';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+declare const process: {
+  env: {
+    PUBLIC_URL: string;
+  };
+};
+
 const MusicToggle: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -24,7 +31,7 @@ const MusicToggle: React.FC = () => {
 
   return (
     <div>
-      <audio ref={audioRef} src="src/music/instrumental.mp3" loop />
+      <audio ref={audioRef} src={`${import.meta.env.BASE_URL}/instrumental.mp3`} loop />
 
       <button 
         onClick={toggleMusic} 

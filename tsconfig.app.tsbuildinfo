@@ -1,1 +1,1 @@
-{"root":["./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/components/balloon.tsx","./src/components/button.tsx","./src/hooks/usepreventresizeontouch.ts"],"version":"5.6.2"}
+{"root":["./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/components/balloon.tsx","./src/components/button.tsx","./src/components/musictoggle.tsx","./src/components/volumecontrol.tsx","./src/hooks/usepreventresizeontouch.ts"],"version":"5.6.2"}
