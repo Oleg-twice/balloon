@@ -13,7 +13,7 @@ const VolumeControl: React.FC<VolumeControlProps> = ({ volume, onVolumeChange })
 
   return (
     <div className="volumeControl">
-      <label htmlFor="volume">Громкость:</label>
+      <label htmlFor="volume">ГРОМКОСТЬ:</label>
       <input
         id="volume"
         type="range"

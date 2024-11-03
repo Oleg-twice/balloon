@@ -3,11 +3,12 @@ import { Balloon } from './components/Balloon';
 import './App.css';
 import { Button } from './components/Button';
 import { usePreventResizeOnTouch } from './hooks/usePreventResizeOnTouch';
-import MusicToggle from './components/MusicToggle'
+import { useModal } from './hooks/useModal';
+import SettingsModal from './components/SettingsModal';
 
 declare global {
   interface Window {
-    responsiveVoice?: any;
+    responsiveVoice?: unknown;
   }
 }
 
@@ -74,16 +75,23 @@ function App() {
 
   usePreventResizeOnTouch();
 
+  const { isOpen, openPopup, closePopup } = useModal();
+
   return (
     <div className={`container ${isNumbers ? 'numbers' : ''}`} translate="no">
       <div className={`main-buttons-container ${isNumbers ? 'main-buttons-container--low' : ''}`}>
         <Button
           type="button"
-          onClick={onButtonClick}
-          text={isNumbers ? 'ПОКАЗАТЬ БУКВЫ' : 'ПОКАЗАТЬ ЦИФРЫ'}
+          onClick={openPopup}
+          text="НАСТРОЙКИ"
           translate="no"
         />
-        <MusicToggle />
+        <SettingsModal
+          isOpen={isOpen}
+          onClose={closePopup}
+          isNumbers={isNumbers}
+          onButtonClick={onButtonClick}
+        />
       </div>
       <div className="main" />
       {(isNumbers ? numbersList : lettersList).map((letter, i) => {

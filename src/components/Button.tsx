@@ -9,6 +9,6 @@ export interface CustomButtonProps {
   
   type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & CustomButtonProps;
 
-export const Button = memo(({ text, className = '', ...buttonProps }: ButtonProps) => <button className={`button ${className}`} {...buttonProps}>
-    <span className="text-holder">{text}</span>
+export const Button = memo(({ text, className = '', children, ...buttonProps }: ButtonProps) => <button className={`button ${className}`} {...buttonProps}>
+    <span className="text-holder">{text || children}</span>
 </button>);

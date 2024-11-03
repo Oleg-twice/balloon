@@ -90,8 +90,6 @@
   
 .balloon {
   display: flex;
-  width: 100px;
-  height: 125px;
   border-radius: 80%;
   position: relative;
   box-shadow: inset -10px -10px 0 rgba(0, 0, 0, 0.07);
@@ -101,9 +99,11 @@
   transform-origin: bottom center;
   justify-content: center;
   align-items: center;
-  font-size: 70px;
+  font-size: 80px;
   font-weight: bolder;
   color: var(--main-text-color);
+  width: 105px;
+  height: 146px;
 }
   
 @keyframes balloons {
@@ -129,8 +129,9 @@
 }
 
 .round {
-  width: 150px;
-  height: 150px;
+  width: 185px;
+  height: 185px;
+  font-size: 120px;
 }
 
 @media (max-width: 1024px) {
@@ -140,8 +141,8 @@
   }
 
   .round {
-    width: 150px;
-    height: 150px;
-    font-size: 100px;
+    width: 185px;
+    height: 185px;
+    font-size: 120px;
   }
 }

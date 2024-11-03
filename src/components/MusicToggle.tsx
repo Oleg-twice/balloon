@@ -23,7 +23,7 @@ const MusicToggle: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="music-toggle-container">
       <audio ref={audioRef} src={`${import.meta.env.BASE_URL}/instrumental.mp3`} loop />
 
       <button 
@@ -31,7 +31,7 @@ const MusicToggle: React.FC = () => {
         className={`toggle-button ${isPlaying ? 'playing': ''}`}
       >
         <span className="icon">{isPlaying ? '🔊' : '🔈'}</span>
-        {isPlaying ? 'Выключить музыку' : 'Включить музыку'}
+        {isPlaying ? 'ВЫКЛЮЧИТЬ МУЗЫКУ' : 'ВКЛЮЧИТЬ МУЗЫКУ'}
       </button>
 
       <VolumeControl volume={volume} onVolumeChange={setVolume} />
