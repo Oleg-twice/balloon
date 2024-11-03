@@ -1,70 +1,12 @@
 import { useCallback, useState } from 'react';
-import { Balloon } from './components/Balloon';
 import './App.css';
 import { Button } from './components/Button';
 import { usePreventResizeOnTouch } from './hooks/usePreventResizeOnTouch';
 import { useModal } from './hooks/useModal';
 import SettingsModal from './components/SettingsModal';
-
-declare global {
-  interface Window {
-    responsiveVoice?: unknown;
-  }
-}
-
-const colorsList = [
-  'pink',
-  'green',
-  'grape',
-  'orange',
-  'yellow',
-  'strawberry',
-  'turquoise',
-  'red',
-  'mandarine',
-];
-
-let init = 0;
-
-const getColor = () => {
-  let counter = init++;
-
-  if (counter > colorsList.length - 1) {
-    init = 1;
-    counter = 0;
-  }
-
-  return colorsList[counter];
-};
-
-const getRussinaLanguage = () => {
-  return window.speechSynthesis
-    .getVoices()
-    .find(({ lang }) => lang === 'ru-RU');
-};
-
-const speak = (textValue: string) => {
-  window.speechSynthesis.cancel();
-  const synth = window.speechSynthesis;
-  const utterance = new SpeechSynthesisUtterance(textValue);
-
-  utterance.voice = getRussinaLanguage() as SpeechSynthesisVoice;
-  utterance.rate = 1; // скорость произношения
-  utterance.pitch = 1; // высота голоса
-  synth.speak(utterance);
-};
-
-const lettersList = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯ'.split('');
-const numbersList = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
-
-const handleSpeak = (letter: string) => {
-  if (letter === 'Й') {
-    speak('ИЙ');
-    return;
-  }
-
-  speak(letter);
-}
+import { useMusicContext } from './context/MusicContext/hooks';
+import { lettersList, numbersList } from './handlers';
+import BallonsList from './components/BallonsList';
 
 function App() {
   const [isNumbers, setIsNumbers] = useState(false);
@@ -76,9 +18,11 @@ function App() {
   usePreventResizeOnTouch();
 
   const { isOpen, openPopup, closePopup } = useModal();
+  const { audioRef } = useMusicContext();
 
   return (
     <div className={`container ${isNumbers ? 'numbers' : ''}`} translate="no">
+      <audio ref={audioRef} src={`${import.meta.env.BASE_URL}/instrumental.mp3`} loop />
       <div className={`main-buttons-container ${isNumbers ? 'main-buttons-container--low' : ''}`}>
         <Button
           type="button"
@@ -94,19 +38,7 @@ function App() {
         />
       </div>
       <div className="main" />
-      {(isNumbers ? numbersList : lettersList).map((letter, i) => {
-        const color = getColor();
-        return (
-          <Balloon
-            className="ballon-item"
-            type={isNumbers ? 'round' : ''}
-            key={i}
-            letter={letter}
-            color={color}
-            onClick={handleSpeak}
-          />
-        );
-      })}
+      <BallonsList type={isNumbers ? 'round' : ''} list={isNumbers ? numbersList : lettersList} />
     </div>
   );
 }
