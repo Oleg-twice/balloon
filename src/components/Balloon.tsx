@@ -26,8 +26,8 @@ export const Balloon = memo(({ onClick, letter, color = 'orange', type = '', cla
   const balloonClasses = `balloon balloon--${color} ${type}`;
 
   return (
-    <div className={`balloon-container ${className}`} onClick={handleClick}>
-      <div className={balloonClasses}>{letter}</div>
+    <div className={`balloon-container ${className}`} onClick={handleClick} translate="no">
+      <div className={balloonClasses} translate="no">{letter}</div>
       {animate && (
         <>
           <div

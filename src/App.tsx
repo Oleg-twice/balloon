@@ -75,12 +75,13 @@ function App() {
   usePreventResizeOnTouch();
 
   return (
-    <div className={`container ${isNumbers ? 'numbers' : ''}`}>
+    <div className={`container ${isNumbers ? 'numbers' : ''}`} translate="no">
       <div className={`main-buttons-container ${isNumbers ? 'main-buttons-container--low' : ''}`}>
         <Button
           type="button"
           onClick={onButtonClick}
           text={isNumbers ? 'ПОКАЗАТЬ БУКВЫ' : 'ПОКАЗАТЬ ЦИФРЫ'}
+          translate="no"
         />
         <MusicToggle />
       </div>

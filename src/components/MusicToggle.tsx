@@ -2,13 +2,6 @@ import React, { useState, useEffect, useRef, memo } from 'react';
 import VolumeControl from './VolumeControl';
 import './MusicToggle.css';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-declare const process: {
-  env: {
-    PUBLIC_URL: string;
-  };
-};
-
 const MusicToggle: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
