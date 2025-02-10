@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import './App.css';
 import { Button } from './components/Button';
 import { usePreventResizeOnTouch } from './hooks/usePreventResizeOnTouch';
@@ -19,10 +19,19 @@ function App() {
 
   const { isOpen, openPopup, closePopup } = useModal();
   const { audioRef } = useMusicContext();
+  const voiceRef = useRef<HTMLAudioElement | null>(null);
+
+  const handleSayOnClick = useCallback((letter: string) => {
+    if (!voiceRef?.current) return;
+
+    voiceRef.current.src = `${import.meta.env.BASE_URL}${isNumbers ? 'numbers' : 'letters'}/${letter}.mp3`;
+    voiceRef.current.play();
+  }, [isNumbers]);
 
   return (
     <div className={`container ${isNumbers ? 'numbers' : ''}`} translate="no">
       <audio ref={audioRef} src={`${import.meta.env.BASE_URL}/instrumental.mp3`} loop />
+      <audio ref={voiceRef} />
       <div className={`main-buttons-container ${isNumbers ? 'main-buttons-container--low' : ''}`}>
         <Button
           type="button"
@@ -38,7 +47,7 @@ function App() {
         />
       </div>
       <div className="main" />
-      <BallonsList type={isNumbers ? 'round' : ''} list={isNumbers ? numbersList : lettersList} />
+      <BallonsList type={isNumbers ? 'round' : ''} list={isNumbers ? numbersList : lettersList} handleSayOnClick={handleSayOnClick} />
     </div>
   );
 }

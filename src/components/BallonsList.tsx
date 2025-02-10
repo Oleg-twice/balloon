@@ -1,8 +1,8 @@
 import { memo } from "react";
 import { Balloon } from "./Balloon";
-import { getColor, handleSpeak } from "../handlers";
+import { getColor } from "../handlers";
 
-const BallonsList = ({ type, list }: { type: string, list: string[] }) => list.map((letter, i) => {
+const BallonsList = ({ type, list, handleSayOnClick }: { type: string, list: string[], handleSayOnClick: (arg: string) => void }) => list.map((letter, i) => {
     const color = getColor();
     return (
       <Balloon
@@ -11,7 +11,7 @@ const BallonsList = ({ type, list }: { type: string, list: string[] }) => list.m
         key={i}
         letter={letter}
         color={color}
-        onClick={handleSpeak}
+        onClick={handleSayOnClick}
       />
     );
   })

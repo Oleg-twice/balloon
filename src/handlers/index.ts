@@ -30,35 +30,8 @@ export const getColor = () => {
     return colorsList[counter];
 };
 
-export const getRussinaLanguage = () => {
-    return window.speechSynthesis
-        .getVoices()
-        .find(({ lang }) => lang === 'ru-RU');
-};
-
-export const speak = (textValue: string) => {
-    window.speechSynthesis.cancel();
-    const synth = window.speechSynthesis;
-    const utterance = new SpeechSynthesisUtterance(textValue);
-
-    utterance.voice = getRussinaLanguage() as SpeechSynthesisVoice;
-    utterance.rate = 1; // скорость произношения
-    utterance.pitch = 1; // высота голоса
-    synth.speak(utterance);
-};
-
 export const lettersList = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯ'.split('');
 export const numbersList = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
-
-export const handleSpeak = (letter: string) => {
-    window.speechSynthesis.cancel();
-    if (letter === 'Й') {
-        speak('ИЙ');
-        return;
-    }
-
-    speak(letter);
-};
 
 type FunctionType<DType> = (data: DType) => DType; 
 
