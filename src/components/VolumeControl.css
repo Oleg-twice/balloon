@@ -11,4 +11,7 @@
 .volumeControl input[type="range"] {
     width: 100%;
 }
-  
+
+.volume {
+    font-size: 1.5rem;
+}

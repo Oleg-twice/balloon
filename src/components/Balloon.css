@@ -99,11 +99,11 @@
   transform-origin: bottom center;
   justify-content: center;
   align-items: center;
-  font-size: 80px;
+  font-size: 100px;
   font-weight: bolder;
   color: var(--main-text-color);
-  width: 105px;
-  height: 146px;
+  width: 119px;
+  height: 174px;
 }
   
 @keyframes balloons {
@@ -135,11 +135,6 @@
 }
 
 @media (max-width: 1024px) {
-  .balloon {
-    width: 90px;
-    height: 105px;
-  }
-
   .round {
     width: 185px;
     height: 185px;

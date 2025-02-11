@@ -16,9 +16,13 @@
     transition: all 0.3s ease;
     padding: 12px 0;
     border-radius: 12px;
-    font-size: 1.25rem;
+    font-size: 1.9rem;
     height: 50px;
     width: 269px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px;
 }
 
 .toggle-button:hover {

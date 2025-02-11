@@ -1,5 +1,4 @@
 .button {
-    height: 50px;
     width: 269px;
     background: hsl(340deg 100% 32%);
     border: none;
@@ -10,13 +9,16 @@
 }
 
 .text-holder {
-    display: block;
+    display: flex;
     padding: 12px 30px;
     border-radius: 12px;
-    font-size: 1.25rem;
+    font-size: 1.9rem;
     background: hsl(345deg 100% 47%);
     color: white;
     transform: translateY(-6px);
+    min-height: 70px;
+    justify-content: center;
+    align-items: center;
 }
 
 button:active .text-holder {
