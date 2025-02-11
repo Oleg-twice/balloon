@@ -1,6 +1,8 @@
-import React, { useState, memo, useMemo, useCallback, useRef } from "react";
+import React, { useState, memo, useMemo } from "react";
 import './Slider.css';
 import BallonsList from "./BallonsList";
+import { useSwipeLeftRight } from "../hooks/useSwipeLeftRight";
+import { usePlaySound } from "../hooks/usePlaySound";
 
 interface SliderProps {
     items: string[];
@@ -21,15 +23,7 @@ export const Slider: React.FC<SliderProps> = ({
     const itemsPerSlide = visibleCount;
     const maxIndex = Math.max(0, Math.ceil(items.length / itemsPerSlide) - 1);
 
-    // TODO: Put this logic in separate hook
-    const soundRef = useRef<HTMLAudioElement | null>(null);
-
-    const handleSound = useCallback(() => {
-        if (!soundRef?.current) return;
-
-        soundRef.current.src = `${import.meta.env.BASE_URL}/missle.mp3`;
-        soundRef.current.play();
-    }, []);
+    const { handleSound } = usePlaySound(`${import.meta.env.BASE_URL}/missle.mp3`);
 
     const nextSlide = () => {
         if (currentIndex < maxIndex) {
@@ -59,18 +53,34 @@ export const Slider: React.FC<SliderProps> = ({
                 <BallonsList type={ballonListType} list={items.slice(start, end)} handleSayOnClick={handleSayOnClick} />
             </div>
         );
-    }), [ballonListType, columns, handleSayOnClick, items, itemsPerSlide, maxIndex])
+    }), [ballonListType, columns, handleSayOnClick, items, itemsPerSlide, maxIndex]);
+
+    const {
+        trackRef,
+        handleTouchEnd,
+        handleTouchMove,
+        handleTouchStart
+    } = useSwipeLeftRight({ currentIndex, nextSlide, prevSlide });
 
     return (
         <div className="slider">
-            <audio ref={soundRef} />
             <button className="arrow" onClick={prevSlide} disabled={currentIndex < 1}>
                 ◀
             </button>
 
-            <div className="viewport">
+            <div
+                className="viewport"
+                onTouchStart={handleTouchStart}
+                onTouchEnd={handleTouchEnd}
+                onTouchMove={handleTouchMove}
+                onMouseDown={handleTouchStart}
+                onMouseMove={handleTouchMove}
+                onMouseUp={handleTouchEnd}
+                onMouseLeave={handleTouchEnd}
+            >
                 <div
                     className="track"
+                    ref={trackRef}
                     style={{
                         transform: `translateX(${-currentIndex * 100}%)`,
                     }}
