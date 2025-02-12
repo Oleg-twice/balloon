@@ -8,6 +8,7 @@ import { useMusicContext } from './context/MusicContext/hooks';
 import { lettersList, numbersList } from './handlers';
 import Slider from './components/Slider';
 import { useMediaQuery } from './hooks/useMediaQuery';
+import FullscreenButton from './components/FullscreenButton';
 
 function App() {
   const [isNumbers, setIsNumbers] = useState(false);
@@ -64,6 +65,7 @@ function App() {
           text="НАСТРОЙКИ"
           translate="no"
         />
+        <FullscreenButton />
         <SettingsModal
           isOpen={isOpen}
           onClose={closePopup}

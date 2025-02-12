@@ -1,0 +1,26 @@
+.fullscreenButton {
+    width: 80px;
+    height: 80px;
+    border: none;
+    cursor: pointer;
+    background: #02d60a;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.fullscreenButton svg {
+    width: 32px;
+    height: 32px;
+}
+
+.fullscreenButton:hover {
+    background: #0aa50f;;
+}
+
+.fullscreenButton:active {
+    transform: scale(0.9);
+}
