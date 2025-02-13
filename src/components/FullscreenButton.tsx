@@ -9,11 +9,23 @@ declare global {
 
     interface HTMLElement {
         webkitRequestFullscreen?: () => Promise<void>;
+        mozRequestFullScreen?: () => Promise<void>;
+        msRequestFullscreen?: () => Promise<void>;
     }
+}
+
+
+const isFullscreenSupported = () => {
+    const docElm = document.documentElement;
+    return !!(docElm.requestFullscreen ||
+              docElm.webkitRequestFullscreen ||
+              docElm.mozRequestFullScreen ||
+              docElm.msRequestFullscreen);
 }
 
 const FullscreenButton = () => {
     const [, setIsFullscreen] = useState(false);
+    const [isSupported] = useState(isFullscreenSupported());
 
     useEffect(() => {
         const handleFullscreenChange = () => {
@@ -28,6 +40,10 @@ const FullscreenButton = () => {
             document.removeEventListener("webkitfullscreenchange", handleFullscreenChange);
         };
     }, []);
+
+    if (!isSupported) {
+        return null;
+    }
 
     const toggleFullscreen = () => {
         const elem = document.body;
