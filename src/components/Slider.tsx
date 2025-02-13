@@ -3,6 +3,7 @@ import './Slider.css';
 import BallonsList from "./BallonsList";
 import { useSwipeLeftRight } from "../hooks/useSwipeLeftRight";
 import { usePlaySound } from "../hooks/usePlaySound";
+import { useMediaQuery } from "../hooks/useMediaQuery";
 
 interface SliderProps {
     items: string[];
@@ -22,6 +23,7 @@ export const Slider: React.FC<SliderProps> = ({
     const [currentIndex, setCurrentIndex] = useState(0);
     const itemsPerSlide = visibleCount;
     const maxIndex = Math.max(0, Math.ceil(items.length / itemsPerSlide) - 1);
+    const [isMobile,,,isLandscape] = useMediaQuery();
 
     const { handleSound } = usePlaySound(`${import.meta.env.BASE_URL}/missle.mp3`);
 
@@ -45,15 +47,15 @@ export const Slider: React.FC<SliderProps> = ({
         return (
             <div
                 key={index}
-                className="slide"
+                className={`slide${isMobile ? ' slide--mobile' : ''}`}
                 style={{
-                    gridTemplateColumns: `repeat(${columns}, 1fr)`,
+                    gridTemplateColumns: `repeat(${columns}, ${isMobile ? '0' : '1'}fr)`,
                 }}
             >
                 <BallonsList type={ballonListType} list={items.slice(start, end)} handleSayOnClick={handleSayOnClick} />
             </div>
         );
-    }), [ballonListType, columns, handleSayOnClick, items, itemsPerSlide, maxIndex]);
+    }), [ballonListType, columns, handleSayOnClick, isMobile, items, itemsPerSlide, maxIndex]);
 
     const {
         trackRef,
@@ -63,13 +65,13 @@ export const Slider: React.FC<SliderProps> = ({
     } = useSwipeLeftRight({ currentIndex, nextSlide, prevSlide });
 
     return (
-        <div className="slider">
+        <div className={`slider${isMobile ? ' slider--mobile' : ''}${isLandscape ? ' slider--landscape' : ''}`}>
             <button className="arrow" onClick={prevSlide} disabled={currentIndex < 1}>
                 ◀
             </button>
 
             <div
-                className="viewport"
+                className={`viewport${isMobile ? ' viewport--mobile' : ''}`}
                 onTouchStart={handleTouchStart}
                 onTouchEnd={handleTouchEnd}
                 onTouchMove={handleTouchMove}

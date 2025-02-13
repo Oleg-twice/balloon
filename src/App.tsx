@@ -36,11 +36,12 @@ function App() {
 
   const columns = useMemo(() => {
     if (isMobile) {
+
       if (isLandscape) {
-        return 2;
+        return isNumbers ? 2 : 3;
       }
 
-      return 1;
+      return isNumbers ? 1 : 2;
     }
 
     if (!isLandscape) {
