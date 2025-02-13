@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
-import { useMusicHandlersContext, useMusicContext } from '../context/MusicContext/hooks';
-import VolumeControl from './VolumeControl';
+import { useMusicHandlersContext, useMusicContext } from '@/context/MusicContext/hooks';
+import { VolumeControl } from '@/components/VolumeControl';
 import './MusicToggle.css';
 
 const MusicToggle: React.FC = () => {

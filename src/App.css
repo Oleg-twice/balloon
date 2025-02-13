@@ -2,8 +2,12 @@
   flex-wrap: wrap;
   display: flex;
   justify-content: center;
-  padding: 140px 20px 20px 20px;
+  padding: 0 20px 20px 20px;
   background-image: linear-gradient(to bottom, #6a4c93 0%, #9f6990 100%);
+}
+
+.container-padding-top {
+  padding-top: 140px;
 }
 
 .main-buttons-container {

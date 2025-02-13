@@ -1,9 +1,9 @@
-import Modal, { ModalProps } from './Modal';
-import { Button } from './Button';
-import { withPortal } from '../hocs/withPortal';
-import MusicToggle from './MusicToggle';
+import Modal, { ModalProps } from '@/components/Modals/Modal/Modal';
+import { Button } from '@/components/Buttons/Button';
+import { withPortal } from '@/hocs/withPortal';
+import { MusicToggle } from '@/components/Buttons/MusicToggle';
 import { memo, MouseEventHandler } from 'react';
-import { pipe } from '../handlers';
+import { pipe } from '@/handlers';
 
 const ModalPortal = withPortal<ModalProps>(Modal);
 

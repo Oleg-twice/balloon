@@ -1,25 +1,18 @@
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useCallback, useMemo, useRef } from 'react';
 import './App.css';
-import { Button } from './components/Button';
-import { usePreventResizeOnTouch } from './hooks/usePreventResizeOnTouch';
-import { useModal } from './hooks/useModal';
-import SettingsModal from './components/SettingsModal';
-import { useMusicContext } from './context/MusicContext/hooks';
-import { lettersList, numbersList } from './handlers';
-import Slider from './components/Slider';
-import { useMediaQuery } from './hooks/useMediaQuery';
-import FullscreenButton from './components/FullscreenButton';
+import { usePreventResizeOnTouch } from '@/hooks/usePreventResizeOnTouch';
+import { useMusicContext } from '@/context/MusicContext/hooks';
+import { lettersList, numbersList } from '@/handlers';
+import Slider from '@/components/Slider/Slider';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
+import { Header } from '@/components/Header';
+import { useHeaderMenuContext } from './context/HeaderMenuContext/hooks';
 
 function App() {
-  const [isNumbers, setIsNumbers] = useState(false);
-
-  const onButtonClick = useCallback(() => {
-    setIsNumbers(prev => !prev);
-  }, []);
+  const { isNumbers, isHeaderOpen } = useHeaderMenuContext();
 
   usePreventResizeOnTouch();
 
-  const { isOpen, openPopup, closePopup } = useModal();
   const { audioRef } = useMusicContext();
 
   // TODO: Put this logic in separate hook
@@ -56,24 +49,10 @@ function App() {
   }, [isLandscape, isMobile, isNumbers]);
 
   return (
-    <div className={`container ${isNumbers ? 'numbers' : ''}`} translate="no">
+    <div className={`container ${isNumbers ? 'numbers' : ''}${isHeaderOpen ? ' container-padding-top': ''}`} translate="no">
       <audio ref={audioRef} src={`${import.meta.env.BASE_URL}/instrumental.mp3`} loop />
       <audio ref={voiceRef} />
-      <div className={`main-buttons-container ${isNumbers ? 'main-buttons-container--low' : ''}`}>
-        <Button
-          type="button"
-          onClick={openPopup}
-          text="НАСТРОЙКИ"
-          translate="no"
-        />
-        <FullscreenButton />
-        <SettingsModal
-          isOpen={isOpen}
-          onClose={closePopup}
-          isNumbers={isNumbers}
-          onButtonClick={onButtonClick}
-        />
-      </div>
+      <Header />
       <div className="main" />
       <Slider
         items={isNumbers ? numbersList : lettersList}

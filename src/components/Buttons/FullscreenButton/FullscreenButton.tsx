@@ -1,5 +1,7 @@
 import { useState, useEffect, TouchEventHandler } from "react";
+import { RoundButton } from "../RoundButton";
 import "./FullscreenButton.css";
+import { usePlaySound } from "@/hooks/usePlaySound";
 
 declare global {
     interface Document {
@@ -26,6 +28,7 @@ const isFullscreenSupported = () => {
 const FullscreenButton = () => {
     const [, setIsFullscreen] = useState(false);
     const [isSupported] = useState(isFullscreenSupported());
+    const { handleSound } = usePlaySound(`${import.meta.env.BASE_URL}/close-click.mp3`);
 
     useEffect(() => {
         const handleFullscreenChange = () => {
@@ -61,6 +64,7 @@ const FullscreenButton = () => {
                 document.webkitExitFullscreen();
             }
         }
+        handleSound();
     };
 
     const onTouchEnd = (e: Event) => {
@@ -69,7 +73,7 @@ const FullscreenButton = () => {
     };
 
     return (
-        <button
+        <RoundButton
             aria-label="Full screen"
             className="fullscreenButton"
             onClick={toggleFullscreen}
@@ -78,7 +82,7 @@ const FullscreenButton = () => {
             <svg width="24" height="24" viewBox="0 0 24 24">
                 <path d="M4 10h2V6h4V4H4zm6 10v-2H6v-4H4v6zm4-16v2h4v4h2V4zm6 10h-2v4h-4v2h6z" fill="currentColor" />
             </svg>
-        </button>
+        </RoundButton>
     );
 };
 

@@ -1,0 +1,26 @@
+.header {
+    position: absolute;
+    top: 0;
+    display: flex;
+    gap: 10px;
+    background: #213547;
+    padding: 30px;
+    z-index: 99;
+    transform: translateY(-100%);
+    width: 100%;
+    justify-content: center;
+}
+
+.header-open {
+    transform: translateY(0);
+}
+
+.open-header-button {
+    position: absolute;
+    top: 80%;
+    border: 2px solid black!important;
+}
+
+.open-arrow {
+    transform: rotate(180deg);
+}

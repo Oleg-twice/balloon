@@ -1,9 +1,9 @@
 import React, { useState, memo, useMemo } from "react";
 import './Slider.css';
-import BallonsList from "./BallonsList";
-import { useSwipeLeftRight } from "../hooks/useSwipeLeftRight";
-import { usePlaySound } from "../hooks/usePlaySound";
-import { useMediaQuery } from "../hooks/useMediaQuery";
+import BallonsList from "../BalloonsList/BalloonsList";
+import { useSwipeLeftRight } from "../../hooks/useSwipeLeftRight";
+import { usePlaySound } from "../../hooks/usePlaySound";
+import { useMediaQuery } from "../../hooks/useMediaQuery";
 
 interface SliderProps {
     items: string[];

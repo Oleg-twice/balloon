@@ -8,6 +8,7 @@ interface VolumeControlProps {
 
 const VolumeControl: React.FC<VolumeControlProps> = ({ volume, onVolumeChange }) => {
   const handleChange = useCallback(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (e: ChangeEvent) => onVolumeChange(parseFloat((e.target as any).value)
   ), [onVolumeChange]);
 
