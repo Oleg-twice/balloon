@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, TouchEventHandler } from "react";
 import "./FullscreenButton.css";
 
 declare global {
@@ -30,7 +30,7 @@ const FullscreenButton = () => {
     }, []);
 
     const toggleFullscreen = () => {
-        const elem = document.documentElement;
+        const elem = document.body;
 
         if (!document.fullscreenElement && !document.webkitFullscreenElement) {
             if (elem.requestFullscreen) {
@@ -47,8 +47,18 @@ const FullscreenButton = () => {
         }
     };
 
+    const onTouchEnd = (e: Event) => {
+        e.preventDefault();
+        toggleFullscreen();
+    };
+
     return (
-        <button aria-label="Full screen" className="fullscreenButton" onClick={toggleFullscreen}>
+        <button
+            aria-label="Full screen"
+            className="fullscreenButton"
+            onClick={toggleFullscreen}
+            onTouchEnd={onTouchEnd as unknown as TouchEventHandler<HTMLButtonElement>}
+        >
             <svg width="24" height="24" viewBox="0 0 24 24">
                 <path d="M4 10h2V6h4V4H4zm6 10v-2H6v-4H4v6zm4-16v2h4v4h2V4zm6 10h-2v4h-4v2h6z" fill="currentColor" />
             </svg>
