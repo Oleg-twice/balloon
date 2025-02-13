@@ -8,12 +8,11 @@ declare global {
     }
 
     interface HTMLElement {
-        webkitRequestFullscreen?: () => Promise<void>
+        webkitRequestFullscreen?: () => Promise<void>;
     }
 }
 
 const FullscreenButton = () => {
-    // TODO: change svg depending on the fullscreen boolean
     const [, setIsFullscreen] = useState(false);
 
     useEffect(() => {
@@ -22,7 +21,7 @@ const FullscreenButton = () => {
         };
 
         document.addEventListener("fullscreenchange", handleFullscreenChange);
-        document.addEventListener("webkitfullscreenchange", handleFullscreenChange); // Для Safari
+        document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
 
         return () => {
             document.removeEventListener("fullscreenchange", handleFullscreenChange);
@@ -32,9 +31,10 @@ const FullscreenButton = () => {
 
     const toggleFullscreen = () => {
         const elem = document.documentElement;
+
         if (!document.fullscreenElement && !document.webkitFullscreenElement) {
             if (elem.requestFullscreen) {
-                elem.requestFullscreen();
+                elem.requestFullscreen().catch((err) => console.error("Fullscreen error:", err));
             } else if (elem.webkitRequestFullscreen) {
                 elem.webkitRequestFullscreen();
             }
