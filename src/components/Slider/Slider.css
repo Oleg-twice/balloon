@@ -38,6 +38,7 @@
   display: grid;
   /* grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(2, 1fr); */
+  grid-template-rows: 0fr 0fr;
   gap: 10px;
   width: 100%;
   flex-shrink: 0;

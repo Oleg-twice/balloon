@@ -9,6 +9,22 @@
     transform: translateY(-100%);
     width: 100%;
     justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 10px 10px 25px;
+}
+
+.header-menu-items {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.buttons-fieldset {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
 .header-open {
@@ -17,10 +33,18 @@
 
 .open-header-button {
     position: absolute;
-    top: 80%;
+    top: 90%;
     border: 2px solid black!important;
 }
 
 .open-arrow {
     transform: rotate(180deg);
+}
+
+.music-settings .text-holder {
+    background-color: #02d60a;
+}
+
+.music-settings.button {
+    background-color: #2bb42f;
 }

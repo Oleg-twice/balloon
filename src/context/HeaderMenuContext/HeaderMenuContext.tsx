@@ -6,12 +6,13 @@ type HeaderContextType = {
     isNumbers: boolean
 };
 type HeaderHandlersType = {
-    chooseBallonTypeClick: () => void;
     openSettingsPopup: () => void;
     closeSettingsPopup: () => void;
     openHeader: () => void;
     closeHeader: () => void;
     toggleHeader: () => void;
+    openLettersView: () => void;
+    openNumbersView: () => void
 };
 
 export const HeaderMenuContext = createContext<HeaderContextType | undefined>(undefined);

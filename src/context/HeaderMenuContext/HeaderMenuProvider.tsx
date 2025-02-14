@@ -1,18 +1,22 @@
-import { ReactNode, useCallback, useMemo, useState } from "react";
+import { ReactNode, useCallback, useMemo } from "react";
 import { useModal } from "@/hooks/useModal";
 import { HeaderHandlersContext, HeaderMenuContext } from "./HeaderMenuContext";
 import { usePlaySound } from "@/hooks/usePlaySound";
 import { pipe } from "@/handlers";
+import { useSteps } from "@/hooks/useSeteps";
+
+const MENU_ITEMS = {
+    LETTERS: 'LETTERS',
+    NUMBERS: 'NUMBERS',
+    PLANETS: 'PLANETS'
+};
+
+const MENU_ITEMS_LIST = Object.values(MENU_ITEMS);
 
 export const HeaderMenuProvider = ({ children }: { children: ReactNode }) => {
-    const [isNumbers, setIsNumbers] = useState(false);
+    const [currentView, openLettersView, openNumbersView] = useSteps(MENU_ITEMS_LIST)
     const { handleSound } = usePlaySound(`${import.meta.env.BASE_URL}/click.mp3`);
     const { handleSound: handleCloseSound } = usePlaySound(`${import.meta.env.BASE_URL}/close-click.mp3`);
-    
-    const onButtonClick = useCallback(() => {
-        setIsNumbers(prev => !prev);
-        handleSound();
-    }, [handleSound]);
 
     const { isOpen: isPopupMenuOpen, openPopup: openSettingsPopup, closePopup: closeSettingsPopup } = useModal();
     const {
@@ -24,8 +28,8 @@ export const HeaderMenuProvider = ({ children }: { children: ReactNode }) => {
     const headerMenuValues = useMemo(() => ({
         isHeaderOpen,
         isPopupMenuOpen,
-        isNumbers
-    }), [isHeaderOpen, isNumbers, isPopupMenuOpen]);
+        isNumbers: currentView === MENU_ITEMS.NUMBERS
+    }), [currentView, isHeaderOpen, isPopupMenuOpen]);
 
     const toggleHeader = useCallback(() => {
         handleSound();
@@ -38,13 +42,14 @@ export const HeaderMenuProvider = ({ children }: { children: ReactNode }) => {
     }, [closeHeader, handleSound, isHeaderOpen, openHeader]);
 
     const headerMenuHandlers = useMemo(() => ({
-        chooseBallonTypeClick: onButtonClick,
         openSettingsPopup: pipe(handleSound, openSettingsPopup),
         closeSettingsPopup: pipe(handleCloseSound, closeSettingsPopup),
         openHeader,
         closeHeader,
-        toggleHeader
-    }), [closeHeader, closeSettingsPopup, handleCloseSound, handleSound, onButtonClick, openHeader, openSettingsPopup, toggleHeader])
+        toggleHeader,
+        openLettersView,
+        openNumbersView,
+    }), [closeHeader, closeSettingsPopup, handleCloseSound, handleSound, openHeader, openLettersView, openNumbersView, openSettingsPopup, toggleHeader])
 
     return (
         <HeaderMenuContext.Provider value={headerMenuValues}>
