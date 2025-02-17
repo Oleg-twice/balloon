@@ -25,7 +25,7 @@ const isFullscreenSupported = () => {
               docElm.msRequestFullscreen);
 }
 
-const FullscreenButton = () => {
+const FullscreenButton = ({ callback }: { callback: () => void }) => {
     const [, setIsFullscreen] = useState(false);
     const [isSupported] = useState(isFullscreenSupported());
     const { handleSound } = usePlaySound(`${import.meta.env.BASE_URL}/close-click.mp3`);
@@ -65,6 +65,7 @@ const FullscreenButton = () => {
             }
         }
         handleSound();
+        callback();
     };
 
     const onTouchEnd = (e: Event) => {

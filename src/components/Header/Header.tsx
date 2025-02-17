@@ -51,7 +51,7 @@ const Header = () => {
                         text="НАСТРОЙКИ МУЗЫКИ"
                         translate="no"
                     />
-                    <FullscreenButton />
+                    <FullscreenButton callback={closeHeader} />
                 </div>
             </div>
             <RoundButton className="open-header-button" onClick={toggleHeader}>
