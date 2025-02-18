@@ -1,4 +1,4 @@
-import React, { useState, memo, useMemo } from "react";
+import React, { useState, memo, useMemo, useCallback } from "react";
 import './Slider.css';
 import BallonsList from "../BalloonsList/BalloonsList";
 import { useSwipeLeftRight } from "../../hooks/useSwipeLeftRight";
@@ -27,20 +27,21 @@ export const Slider: React.FC<SliderProps> = ({
 
     const { handleSound } = usePlaySound(`${import.meta.env.BASE_URL}/missle.mp3`);
 
-    const nextSlide = () => {
+    const nextSlide = useCallback(() => {
         if (currentIndex < maxIndex) {
             setCurrentIndex((prev) => prev + 1);
             handleSound();
         }
-    };
+    }, [currentIndex, handleSound, maxIndex]);
 
-    const prevSlide = () => {
+    const prevSlide = useCallback(() => {
         if (currentIndex > 0) {
             setCurrentIndex((prev) => prev - 1);
             handleSound();
         }
-    };
+    }, [currentIndex, handleSound]);
 
+    console.log(handleSayOnClick === handleSayOnClick, 'handleSayOnClick')
     const list = useMemo(() => Array.from({ length: maxIndex + 1 }, (_, index) => {
         const start = index * itemsPerSlide;
         const end = start + itemsPerSlide;

@@ -15,7 +15,8 @@ const Header = () => {
         closeHeader,
         toggleHeader,
         openLettersView,
-        openNumbersView
+        openNumbersView,
+        openPlanetsView,
     } = useHeaderHandlersContext();
 
     const onClose = useCallback(() => {
@@ -38,6 +39,12 @@ const Header = () => {
                     text={'ЦИФРЫ'}
                     translate="no"
                 />
+                <Button
+                    type="button"
+                    onClick={pipe(openPlanetsView, onClose) as unknown as MouseEventHandler<HTMLButtonElement>}
+                    text={'ПЛАНЕТЫ'}
+                    translate="no"
+                />
                 <SettingsModal
                     isOpen={isPopupMenuOpen}
                     onClose={onClose}
@@ -47,7 +54,7 @@ const Header = () => {
                     <Button
                         className="music-settings"
                         type="button"
-                        onClick={openSettingsPopup}
+                        onClick={openSettingsPopup as unknown as MouseEventHandler<HTMLButtonElement>}
                         text="НАСТРОЙКИ МУЗЫКИ"
                         translate="no"
                     />

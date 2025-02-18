@@ -62,6 +62,10 @@ button:focus-visible {
   display: none;  /* Safari and Chrome */
 }
 
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

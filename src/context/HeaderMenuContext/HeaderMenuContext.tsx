@@ -3,16 +3,18 @@ import { createContext } from 'react';
 type HeaderContextType = {
     isHeaderOpen: boolean;
     isPopupMenuOpen: boolean;
-    isNumbers: boolean
+    isNumbers: boolean;
+    currentView: string;
 };
 type HeaderHandlersType = {
-    openSettingsPopup: () => void;
-    closeSettingsPopup: () => void;
+    openSettingsPopup: (arg?: string) => string | undefined;
+    closeSettingsPopup: (arg?: string) => string | undefined;
     openHeader: () => void;
     closeHeader: () => void;
     toggleHeader: () => void;
     openLettersView: () => void;
-    openNumbersView: () => void
+    openNumbersView: () => void;
+    openPlanetsView: () => void;
 };
 
 export const HeaderMenuContext = createContext<HeaderContextType | undefined>(undefined);
