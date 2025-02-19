@@ -1,14 +1,19 @@
 :root {
     --orbit-size: 60px;
-    --planet-distance: 15px;
-  }
-  
-  @keyframes orbit {
-    0% { transform: rotate(0deg) translateX(var(--planet-distance)) rotate(0deg); }
-    100% { transform: rotate(360deg) translateX(var(--planet-distance)) rotate(-360deg); }
-  }
-  
-  .solar-system {
+    --planet-distance: 25em;
+}
+
+@keyframes orbit {
+    0% {
+        transform: rotate(0deg) translateX(var(--planet-distance)) rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg) translateX(var(--planet-distance)) rotate(-360deg);
+    }
+}
+
+.solar-system {
     position: relative;
     display: flex;
     justify-content: center;
@@ -16,22 +21,21 @@
     border-radius: 50%;
     outline: none;
     user-select: none;
-  }
+}
 
-  .solar-system:focus-visible {
+.solar-system:focus-visible {
     outline: none;
-  }
-  
-  .sun {
-    width: 150px;
-    height: 150px;
-    background-color: yellow;
+}
+
+.sun {
+    width: 15em;
+    height: auto;
     border-radius: 50%;
     position: absolute;
     z-index: 1;
-  }
-  
-  .orbit {
+}
+
+.orbit {
     position: absolute;
     border: 1px dashed rgba(255, 255, 255, 0.5);
     border-radius: 50%;
@@ -42,13 +46,13 @@
     height: var(--orbit-size);
     outline: none;
     user-select: none;
-  }
+}
 
-  .orbit:focus-visible {
+.orbit:focus-visible {
     outline: none;
-  }
-  
-  .planet {
+}
+
+.planet {
     position: absolute;
     border-radius: 50%;
     display: flex;
@@ -57,17 +61,16 @@
     font-size: 12px;
     font-weight: bold;
     animation: orbit var(--orbit-speed, 10s) linear infinite;
-  }
+}
 
-  .planet:hover, .sun:hover, .orbit:hover {
+.planet:hover,
+.sun:hover,
+.orbit:hover {
     cursor: pointer;
-  }
+}
 
-  .planet:active, .sun:active {
+.planet:active,
+.sun:active {
     transform: scale(1.1);
     box-shadow: 0 0 30px 15px rgba(255, 204, 0, 0.9);
-  }
-
-  .dark-blue {
-    background-image: radial-gradient(circle, #9f7d9a, #0c273e) !important;
-  }
+}
