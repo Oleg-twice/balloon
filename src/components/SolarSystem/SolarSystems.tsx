@@ -87,8 +87,10 @@ const SolarSystem = ({ handlePlaySound }: { handlePlaySound: (arg: string) => vo
     const handlerPlaySunSound = () => handlePlaySound('sun');
 
     useEffect(() => {
+        document.documentElement.style.setProperty('background-image', 'radial-gradient(circle, #9f7d9a, #0c273e)');
         document.body.style.setProperty('background-image', 'radial-gradient(circle, #9f7d9a, #0c273e)');
         return () => {
+            document.documentElement.style.setProperty( 'background-image', 'linear-gradient(to bottom, #6a4c93 0%, #9f6990 100%)');
             document.body.style.setProperty('background-image', 'linear-gradient(to bottom, #6a4c93 0%, #9f6990 100%)');
         }
     }, []);

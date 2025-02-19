@@ -32,6 +32,13 @@ body {
   background-image: linear-gradient(to bottom, #6a4c93 0%, #9f6990 100%)
 }
 
+:not(:root):fullscreen::backdrop {
+    position: fixed;
+    inset: 0px;
+    background: unset;
+    background-image: linear-gradient(to bottom, #6a4c93 0%, #9f6990 100%)
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
