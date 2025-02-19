@@ -3,11 +3,14 @@ import { useModal } from "@/hooks/useModal";
 import { HeaderHandlersContext, HeaderMenuContext } from "./HeaderMenuContext";
 import { usePlaySound } from "@/hooks/usePlaySound";
 import { pipe } from "@/handlers";
-import { useSteps } from "@/hooks/useSeteps";
 import { MENU_ITEMS, MENU_ITEMS_LIST } from "./constants";
+import { useNavigateByParams } from "@/hooks/useNavigateByParams";
 
 export const HeaderMenuProvider = ({ children }: { children: ReactNode }) => {
-    const [currentView, openLettersView, openNumbersView, openPlanetsView] = useSteps(MENU_ITEMS_LIST)
+    const [currentView, openLettersView, openNumbersView, openPlanetsView] = useNavigateByParams({
+        pagesList: MENU_ITEMS_LIST,
+        defaultPage: MENU_ITEMS.LETTERS
+    })
     const { handleSound } = usePlaySound(`${import.meta.env.BASE_URL}/click.mp3`);
     const { handleSound: handleCloseSound } = usePlaySound(`${import.meta.env.BASE_URL}/close-click.mp3`);
 

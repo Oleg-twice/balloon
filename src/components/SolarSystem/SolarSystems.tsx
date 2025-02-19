@@ -10,16 +10,16 @@ type Planet = {
 }
 
 const planets: Planet[] = [
-    { name: "Mercury", size: 6, orbit: 7, audio: "mercury.mp3" },
+    { name: "Mercury", size: 6, orbit: 6, audio: "mercury.mp3" },
     { name: "Venus", size: 6.5, orbit: 10, audio: "venus.mp3" },
-    { name: "Earth", size: 7, orbit: 13, audio: "earth.mp3", satellites: [{
+    { name: "Earth", size: 7.5, orbit: 13, audio: "earth.mp3", satellites: [{
         name: "Moon", size: 4, orbit: 5, audio: "moon.mp3"
     }] },
-    { name: "Mars", size: 7.8, orbit: 16, audio: "mars.mp3" },
+    { name: "Mars", size: 7, orbit: 16, audio: "mars.mp3" },
     { name: "Jupiter", size: 10.5, orbit: 19, audio: "jupiter.mp3" },
-    { name: "Saturn", size: 8, orbit: 22, audio: "saturn.mp3" },
-    { name: "Uranus", size: 7.5, orbit: 25, audio: "uranus.mp3" },
-    { name: "Neptune", size: 9.2, orbit: 29, audio: "neptune.mp3" },
+    { name: "Saturn", size: 12, orbit: 22, audio: "saturn.mp3" },
+    { name: "Uranus", size: 11, orbit: 25, audio: "uranus.mp3" },
+    { name: "Neptune", size: 8, orbit: 29, audio: "neptune.mp3" },
 ];
 
 const Planet = memo(({ name, size, orbit, handlePlaySound, satellites = [] }: Planet & { handlePlaySound: (arg: string) => void; }) => {
@@ -45,7 +45,7 @@ const Planet = memo(({ name, size, orbit, handlePlaySound, satellites = [] }: Pl
                     style={{
                         width: `${size}rem`,
                         height: 'auto',
-                        "--planet-distance": `${orbit + 5}rem`,
+                        "--planet-distance": `${orbit}rem`,
                         "--orbit-speed": `${Math.sqrt(orbit) * 12}s`,
                         zIndex: 1,
                         position: 'relative'
@@ -72,7 +72,7 @@ const Planet = memo(({ name, size, orbit, handlePlaySound, satellites = [] }: Pl
                                         width: `${satellite.size}rem`,
                                         height: 'auto',
                                         "--planet-distance": `${satellite.orbit}rem`,
-                                        "--orbit-speed": `${Math.sqrt(satellite.orbit) * 12}s`,
+                                        "--orbit-speed": `${satellite.orbit}s`,
                                         zIndex: 1
                                     } as React.CSSProperties}
                                 />
