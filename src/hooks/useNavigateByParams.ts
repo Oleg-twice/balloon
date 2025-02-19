@@ -1,7 +1,9 @@
 import { useSearchParams } from "./useSearchParams";
 import { useSteps } from "./useSeteps";
 
-export const useNavigateByParams = ({ pagesList = [], defaultPage = '' }: { pagesList: string[]; defaultPage?: string }) => {
+export const useNavigateByParams = ({
+    pagesList = [],
+    defaultPage = '' }: { pagesList: string[]; defaultPage?: string }): [string, ...(() => void)[]] => {
     const {
         navigate,
         page
